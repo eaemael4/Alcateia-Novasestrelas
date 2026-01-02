@@ -503,31 +503,113 @@ h1 {
     transition: width 0.5s ease;
   }
 
+  .hero {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  /* Slides no fundo */
+  .slides {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .slide {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+  }
+
+  .slide.active {
+    opacity: 1;
+  }
+
+  /* Overlay escuro */
+  .hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: rgba(0, 0, 0, 0.95);
+
+    background: linear-gradient(
+      to bottom,
+      rgba(28, 25, 10, 0.5) 0%,
+      rgba(28, 25, 10, 0.75) 35%,
+      rgba(28, 25, 10, 0.9) 70%,
+      rgba(28, 25, 10, 1) 100%
+    );
+  }
+
+  /* Conteúdo por cima */
   .cabeçalho {
+    position: relative;
+    z-index: 2;
     min-height: 100vh;
+
     display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .cabeçalho .logo {
+    width: 250px;
+    height: 250px;
+    margin: 15px;
+    display: flex;
+    border-radius: 200%;
+    border: 4px solid var(--vidro);
+    box-shadow: 0 0 20px rgba(229, 205, 70, 0.3);
+    animation: flutuar 5s ease-in-out infinite;
+  }
+
+  .cabeçalho h1 {
+    font-size: 2.35rem;
+    color: var(--primaria);
+    font-weight: 800;
+    letter-spacing: 2.5px;
+    max-width: 100%;
+    height: auto;
   }
 
   .cabeçalho-sub-titulo {
     font-size: 1.1rem;
     display: flex;
-    font-family: "Zuume" sans-serif;
     font-weight: 500;
     letter-spacing: 0.5px;
+    max-width: 100%;
+    height: auto;
   }
 
-  .logo {
-    width: 250px;
-    height: 250px;
+  /* Indicadores */
+  .indicators {
+    position: absolute;
+    bottom: 30px;
+    width: 100%;
     display: flex;
-    box-shadow: 0 0 20px rgba(229, 205, 70, 0.3);
-    border-radius: 200%;
-    border: 4px solid var(--vidro);
-    margin: 15px;
-    animation: flutuar 5s ease-in-out infinite;
+    justify-content: center;
+    gap: 10px;
+    z-index: 2;
+    max-width: 100%;
+    height: auto;
+  }
+
+  .dot {
+    width: 10px;
+    height: 10px;
+    background: #aaa;
+    border-radius: 50%;
+  }
+
+  .dot.active {
+    background: var(--primaria);
   }
 
   h1 {
